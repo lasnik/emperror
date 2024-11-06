@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
-title: Academic Project Page Template
-description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+title: "EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners"
+description: "Project page for \"EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners\"."
 favicon: favicon.svg
 thumbnail: screenshot.png
 ---
@@ -19,7 +19,7 @@ import YouTubeVideo from "../components/YouTubeVideo.astro";
 import LaTeX from "../components/LaTeX.astro";
 
 import outside from "../assets/outside.mp4";
-import transformer from "../assets/transformer.webp";
+import teaser from "../assets/teaser.webp";
 import Splat from "../components/Splat.tsx"
 
 import CodeBlock from "../components/CodeBlock.astro";
@@ -29,125 +29,95 @@ export const components = {pre: CodeBlock}
   title={frontmatter.title}
   authors={[
     {
-      name: "Roman Hauksson",
-      url: "https://roman.technology",
-      institution: "Independent",
-      notes: ["*", "†"],
+      name: "Niklas Hanselmann",
+      url: "https://lasnik.github.io",
+      affiliation_ids: ["1, 2, 3"],
     },
     {
-      name: "Author Two",
-      institution: "Institution Two",
-      notes: ["*", "†"],
+      name: "Simon Doll",
+      url: "https://simondoll.github.io/",
+      affiliation_ids: ["1, 2"],
     },
     {
-      name: "Author Three",
-      institution: "Institution Three",
-      notes: ["†"],
+      name: "Marius Cordts",
+      url: "https://scholar.google.com/citations?user=RM0ik8wAAAAJ&hl=en",
+      affiliation_ids: ["1"],
     },
     {
-      name: "Author Four",
-      institution: "Institution Four",
+      name: "Hendrik P.A. Lensch",
+      url: "https://uni-tuebingen.de/de/29959",
+      affiliation_ids: ["2"],
+    },
+    {
+      name: "Andreas Geiger",
+      url: "https://www.cvlibs.net/",
+      affiliation_ids: ["2, 3"],
     },
   ]}
-  conference="Conference Name"
-  notes={[
+  affiliations={[
     {
-      symbol: "*",
-      text: "author note one",
+      id: "1",
+      name: "Mercedes-Benz AG",
     },
     {
-      symbol: "†",
-      text: "author note two",
+      id: "2",
+      name: "University of Tübingen",
+    },
+    {
+      id: "3",
+      name: "Tübingen AI Center",
     },
   ]}
+  conference="arXiv"
   links={[
     {
       name: "Paper",
       url: "",
+      icon: "academicons:arxiv",
+    },
+    {
+      name: "Suppl. Material",
+      url: "",
       icon: "fa-solid:file-pdf",
     },
     {
-      name: "Code",
-      url: "https://github.com/RomanHauksson/academic-project-astro-template",
-      icon: "mdi:github",
-    },
-    {
-      name: "arXiv",
+      name: "Suppl. Video",
       url: "",
-      icon: "academicons:arxiv",
+      icon: "fa-solid:play-circle",
     },
   ]}
   />
 
-<Video source={outside} />
+<Figure
+    caption=""
+  >
+    <Image source={teaser} altText="High-level overview of <SmallCaps>EMPERROR</SmallCaps> and its application to adversarial probing of self-driving planners." />
+</Figure>
 
 <HighlightedSection>
 
 ## Abstract
 
-This is a live demo for a template you can use to create a simple project page for your research paper. See the code for the template and instructions on how to use it yourself [here](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind CSS](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+To handle the complexities of real-world traffic, learning planners for self-driving from data is a promising direction. While recent approaches have shown great progress, they typically assume a setting in which the ground-truth world state is available as input. However, when deployed, planning needs to be robust to the long-tail of errors incurred by a noisy perception system, which is often neglected in evaluation. To address this, previous work has proposed drawing adversarial samples from a perception error model (PEM) mimicking the noise characteristics of a target object detector. However, these methods use simple PEMs that fail to accurately capture all failure modes of detection. In this paper, we present <SmallCaps>EMPERROR</SmallCaps>, a novel transformer-based generative PEM, apply it to stress-test an imitation learning (IL)-based planner and show that it imitates modern detectors more faithfully than previous work. Furthermore, it is able to produce realistic noisy inputs that increase the planner’s collision rate by up to 85 %, demonstrating its utility as a valuable tool for a more complete evaluation of self-driving planners.
 
 </HighlightedSection>
 
-## Figures
+## <SmallCaps>EMPERROR</SmallCaps> can faithfully imitate modern 3D object detectors
 
-Use the figure component to display images, videos, equations, or any other element, with an optional caption.
+lorem ipsum
 
-<Figure
-    caption="Diagram of the transformer deep learning architecture."
-  >
-    <Image source={transformer} altText="Diagram of the transformer deep learning architecture." />
-</Figure>
+## IL-based planning is brittle to small, plausible perturbations
 
-## Two columns
-
-Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
-
-<TwoColumns>
-  <Figure slot="left" caption="Take a look at this YouTube video.">
-    <YouTubeVideo videoId="wjZofJX0v4M" />
-  </Figure>
-  <Figure slot="right" caption="Now look at this Gaussian Splat, rendered with a React component.">
-    <Splat client:idle />
-  </Figure>
-</TwoColumns>
-
-## Heading levels
-
-Use headings to divide your content into sections.
-
-### Heading 3
-
-Go down a level to heading 3...
-
-#### Heading 4
-
-...and down again to heading 4.
-
-## LaTeX
-
-You can also add LaTeX formulas, rendered during the build process using [KaTeX](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: <LaTeX inline formula="a^2 + b^2 = c^2" />. Or, you can write them as a block:
-
-<LaTeX formula="\int_a^b f(x) dx" />
-
-## Tables
-
-You can add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
-
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
+lorem ipsum
 
 ## BibTeX citation
 
 ```bibtex
-@misc{roman2024academic,
-  author = "{Roman Hauksson}",
-  title = "Academic Project Page Template",
-  year = "2024",
-  howpublished = "\url{https://research-template.roman.technology}",
+@Article{hanselmann2024emperror,
+  title = {EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners},
+  author = {Hanselmann, Niklas and Doll, Simon and Cordts, Marius and Lensch, Hendrik PA and Geiger, Andreas},
+  year = {2024},
+  journal = {arXiv.org},
+  volume = {2411.XXXXX}
 }
 ```

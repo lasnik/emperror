@@ -1,8 +1,13 @@
 type Author = {
   name: string;
   url?: string;
-  institution?: string;
+  affiliation_ids: string[];
   notes?: string[];
+}
+
+type Affiliation = {
+  id: string;
+  name: string;
 }
 
 type Link = {
@@ -16,4 +21,4 @@ type Note = {
   text: string;
 }
 
-export { Author, Link, Note };
+export { Author, Affiliation, Link, Note };

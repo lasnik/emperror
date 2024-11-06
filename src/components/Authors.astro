@@ -1,5 +1,5 @@
 ---
-import type { Author } from "../types/types";
+import type { Author} from "../types/types";
 
 interface Props {
   authors: Author[];
@@ -20,6 +20,14 @@ const { authors } = Astro.props;
           ) : (
             author.name
           )}
+          {author.affiliation_ids && (
+            <sup class="text-sm">
+              {author.affiliation_ids.map(
+                (affiliation, index, array) =>
+                  affiliation + (index < array.length - 1 ? "," : "")
+              )}
+            </sup>
+          )}
           {author.notes && (
             <sup class="text-xl">
               {author.notes.map(
@@ -29,7 +37,6 @@ const { authors } = Astro.props;
             </sup>
           )}
         </span>
-        {author.institution && <p>{author.institution}</p>}
       </div>
     ))
   }

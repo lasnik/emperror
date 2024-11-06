@@ -1,24 +1,31 @@
 ---
-import type { Author, Note, Link } from "../types/types";
+import type { Author, Affiliation, Note, Link } from "../types/types";
 import Links from "./Links.astro";
 import Authors from "./Authors.astro";
 import Notes from "./Notes.astro";
+import Affiliations from "./Affiliations.astro";
+import SmallCaps from "./SmallCaps.astro";
 
 interface Props {
   title: string;
   authors: Author[];
-  conference?: string;
+  affiliations?: Affiliation[];
   notes?: Note[];
+  conference?: string;
   links: Link[];
 }
 
-const { title, authors, conference, notes, links } = Astro.props as Props;
+const { title, authors, affiliations, notes, conference, links } = Astro.props as Props;
 ---
 
 <header class="flex flex-col gap-10 items-center mb-6">
-  <h1>{title}</h1>
+  <h1>
+    <SmallCaps>{title.split(' ')[0]}</SmallCaps>
+    {title.split(' ').slice(1).join(' ')}
+  </h1>
   <div class="flex flex-col gap-6 items-center">
     <Authors authors={authors} />
+    {affiliations && <Affiliations affiliations={affiliations} />}
     {conference && <p class="text-center">{conference}</p>}
     {notes && <Notes notes={notes} />}
     {links && <Links links={links} />}
