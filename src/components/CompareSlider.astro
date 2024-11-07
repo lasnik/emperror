@@ -1,0 +1,22 @@
+---
+interface Props {
+  imgOne: string;
+  imgTwo: string;
+}
+
+const { imgOne, imgTwo } = Astro.props;
+---
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
+
+<img-comparison-slider>
+  <img slot="first" src={imgOne} />
+  <img slot="second" src={imgTwo} />
+</img-comparison-slider>
