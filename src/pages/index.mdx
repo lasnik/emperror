@@ -1,0 +1,221 @@
+---
+layout: ../layouts/Layout.astro
+title: "EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners"
+description: "Project page for \"EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners\"."
+favicon: favicon.svg
+thumbnail: screenshot.png
+---
+
+import Layout from "../layouts/Layout.astro";
+import "../styles/index.css";
+
+import Header from "../components/Header.astro";
+import Video from "../components/Video.astro";
+import HighlightedSection from "../components/HighlightedSection.astro";
+import SmallCaps from "../components/SmallCaps.astro";
+import Figure from "../components/Figure.astro";
+import Image from "../components/Image.astro";
+import TwoColumns from "../components/TwoColumns.astro";
+import YouTubeVideo from "../components/YouTubeVideo.astro";
+import LaTeX from "../components/LaTeX.astro";
+import CompareSlider from "../components/CompareSlider.astro";
+
+import outside from "../assets/outside.mp4";
+import teaser from "../assets/teaser.webp";
+import Splat from "../components/Splat.tsx"
+
+import CodeBlock from "../components/CodeBlock.astro";
+export const components = {pre: CodeBlock}
+
+<Header
+  title={frontmatter.title}
+  authors={[
+    {
+      name: "Niklas Hanselmann",
+      url: "https://lasnik.github.io",
+      affiliation_ids: ["1, 2, 3"],
+    },
+    {
+      name: "Simon Doll",
+      url: "https://simondoll.github.io/",
+      affiliation_ids: ["1, 2"],
+    },
+    {
+      name: "Marius Cordts",
+      url: "https://scholar.google.com/citations?user=RM0ik8wAAAAJ&hl=en",
+      affiliation_ids: ["1"],
+    },
+    {
+      name: "Hendrik P.A. Lensch",
+      url: "https://uni-tuebingen.de/de/29959",
+      affiliation_ids: ["2"],
+    },
+    {
+      name: "Andreas Geiger",
+      url: "https://www.cvlibs.net/",
+      affiliation_ids: ["2, 3"],
+    },
+  ]}
+  affiliations={[
+    {
+      id: "1",
+      name: "Mercedes-Benz AG",
+    },
+    {
+      id: "2",
+      name: "University of Tübingen",
+    },
+    {
+      id: "3",
+      name: "Tübingen AI Center",
+    },
+  ]}
+  conference="arXiv"
+  links={[
+    {
+      name: "Paper",
+      url: "https://arxiv.org/abs/2411.07719",
+      icon: "academicons:arxiv",
+    },
+    {
+      name: "Suppl. Material",
+      url: "src/assets/supplementary_document.pdf",
+      icon: "fa-solid:file-pdf",
+    },
+    {
+      name: "Suppl. Video",
+      url: "src/assets/supplementary_video.mp4",
+      icon: "fa-solid:play-circle",
+    },
+  ]}
+  />
+
+<Figure
+    caption=""
+  >
+    <Image source={teaser} altText="High-level overview of <SmallCaps>EMPERROR</SmallCaps> and its application to adversarial probing of self-driving planners." />
+</Figure>
+
+<HighlightedSection>
+
+## Abstract
+
+To handle the complexities of real-world traffic, learning planners for self-driving from data is a promising direction. While recent approaches have shown great progress, they typically assume a setting in which the ground-truth world state is available as input. However, when deployed, planning needs to be robust to the long-tail of errors incurred by a noisy perception system, which is often neglected in evaluation. To address this, previous work has proposed drawing adversarial samples from a perception error model (PEM) mimicking the noise characteristics of a target object detector. However, these methods use simple PEMs that fail to accurately capture all failure modes of detection. In this paper, we present <SmallCaps>EMPERROR</SmallCaps>, a novel transformer-based generative PEM, apply it to stress-test an imitation learning (IL)-based planner and show that it imitates modern detectors more faithfully than previous work. Furthermore, it is able to produce realistic noisy inputs that increase the planner’s collision rate by up to 85 %, demonstrating its utility as a valuable tool for a more complete evaluation of self-driving planners.
+
+</HighlightedSection>
+
+## IL-based planning is brittle to small, plausible perception errors
+By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, we can stress-test a given planning module. Here we highlight the brittleness of an imitation learning-based planner by searching for proxy detection results that induce risky plans ending in collision. We show the ground-truth state in red, and proxy detection results in blue. Move the slider to compare the nominal, and adversarial scene.
+
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
+
+<TwoColumns>
+  <Figure slot="left">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_04_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_04_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+  <Figure slot="right">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_03_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_03_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+</TwoColumns>
+
+<TwoColumns>
+  <Figure slot="left">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_05_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_05_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+  <Figure slot="right">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_06_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_06_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+</TwoColumns>
+
+<TwoColumns>
+  <Figure slot="left">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_07_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_07_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+  <Figure slot="right">
+    <img-comparison-slider value="70">
+      <figure slot="first" class="before">
+        <img src="src/assets/attacks/scene_08_nominal.webp" width="100%" />
+        <figcaption>nominal</figcaption>
+      </figure>
+      <figure slot="second" class="after">
+        <img src="src/assets/attacks/scene_08_critical.webp" width="100%" />
+          <figcaption>critical</figcaption>
+        </figure>
+    </img-comparison-slider>
+  </Figure>
+</TwoColumns>
+
+## <SmallCaps>EMPERROR</SmallCaps> can faithfully imitate modern 3D object detectors
+To further highlight the plausibility of proxy detections generated by <SmallCaps>EMPERROR</SmallCaps>, we visualize its results over time for three different target detectors and compare to a PEM predicting a per-object Gaussian error distribution using an MLP. Even when drawing independent samples at each timestep, the error patterns produced by <SmallCaps>EMPERROR</SmallCaps> are consistent accross the sequence and closely match the target object detector. This is not the case for the baseline.
+
+<img loading="lazy" src="src/assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_15.webp" />
+<img loading="lazy" src="src/assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_15.webp" />
+<img loading="lazy" src="src/assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_15.webp" />
+
+<img loading="lazy" src="src/assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_22.webp" />
+<img loading="lazy" src="src/assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_22.webp" />
+<img loading="lazy" src="src/assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_22.webp" />
+
+## BibTeX citation
+
+```bibtex
+@Article{hanselmann2024emperror,
+  title = {EMPERROR: A Flexible Generative Perception Error Model for Probing Self-Driving Planners},
+  author = {Hanselmann, Niklas and Doll, Simon and Cordts, Marius and Lensch, Hendrik PA and Geiger, Andreas},
+  year = {2024},
+  journal = {arXiv.org},
+  volume = {2411.07719}
+}
+```
