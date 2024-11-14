@@ -21,6 +21,8 @@ import LaTeX from "../components/LaTeX.astro";
 import CompareSlider from "../components/CompareSlider.astro";
 
 import teaser from "../assets/teaser.webp";
+import suppl_document from "../assets/supplementary_document.pdf";
+import suppl_video from "../assets/supplementary_video.mp4";
 
 import CodeBlock from "../components/CodeBlock.astro";
 export const components = {pre: CodeBlock}
@@ -77,12 +79,12 @@ export const components = {pre: CodeBlock}
     },
     {
       name: "Suppl. Material",
-      url: "src/assets/supplementary_document.pdf",
+      url: suppl_document,
       icon: "fa-solid:file-pdf",
     },
     {
       name: "Suppl. Video",
-      url: "src/assets/supplementary_video.mp4",
+      url: suppl_video,
       icon: "fa-solid:play-circle",
     },
   ]}
@@ -118,11 +120,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="left">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_04_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_04_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_04_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_04_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -130,11 +132,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="right">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_03_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_03_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_03_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_03_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -145,11 +147,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="left">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_05_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_05_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_05_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_05_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -157,11 +159,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="right">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_06_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_06_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_06_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_06_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -172,11 +174,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="left">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_07_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_07_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_07_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_07_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -184,11 +186,11 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
   <Figure slot="right">
     <img-comparison-slider value="70">
       <figure slot="first" class="before">
-        <img src="src/assets/attacks/scene_08_nominal.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_08_nominal.webp")} altText=""/>
         <figcaption>nominal</figcaption>
       </figure>
       <figure slot="second" class="after">
-        <img src="src/assets/attacks/scene_08_critical.webp" width="100%" />
+        <Image source={import("../assets/attacks/scene_08_critical.webp")} altText=""/>
           <figcaption>critical</figcaption>
         </figure>
     </img-comparison-slider>
@@ -198,13 +200,13 @@ By drawing samples from <SmallCaps>EMPERROR</SmallCaps> in adversarial fashion, 
 ## <SmallCaps>EMPERROR</SmallCaps> can faithfully imitate modern 3D object detectors
 To further highlight the plausibility of proxy detections generated by <SmallCaps>EMPERROR</SmallCaps>, we visualize its results over time for three different target detectors and compare to a PEM predicting a per-object Gaussian error distribution using an MLP. Even when drawing independent samples at each timestep, the error patterns produced by <SmallCaps>EMPERROR</SmallCaps> are consistent accross the sequence and closely match the target object detector. This is not the case for the baseline.
 
-<img loading="lazy" src="src/assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_15.webp" />
-<img loading="lazy" src="src/assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_15.webp" />
-<img loading="lazy" src="src/assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_15.webp" />
+<Image loading="lazy" source={import("../assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_15.webp")} altText=""/>
+<Image loading="lazy" source={import("../assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_15.webp")} altText=""/>
+<Image loading="lazy" source={import("../assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_15.webp")} altText=""/>
 
-<img loading="lazy" src="src/assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_22.webp" />
-<img loading="lazy" src="src/assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_22.webp" />
-<img loading="lazy" src="src/assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_22.webp" />
+<Image loading="lazy" source={import("../assets/pem_comparison/detr3d/v_mlp_gauss_detr3d_seq_22.webp")} altText=""/>
+<Image loading="lazy" source={import("../assets/pem_comparison/bevformer/v_mlp_gauss_bevformer_seq_22.webp")} altText=""/>
+<Image loading="lazy" source={import("../assets/pem_comparison/streampetr/v_mlp_gauss_streampetr_seq_22.webp")} altText=""/>
 
 ## BibTeX citation
 
