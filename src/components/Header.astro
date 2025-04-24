@@ -12,22 +12,29 @@ interface Props {
   affiliations?: Affiliation[];
   notes?: Note[];
   conference?: string;
+  presented_at?: string;
   links: Link[];
 }
 
-const { title, authors, affiliations, notes, conference, links } = Astro.props as Props;
+const { title, authors, affiliations, notes, conference, presented_at, links } = Astro.props as Props;
 ---
 
-<header class="flex flex-col gap-10 items-center mb-6">
+<header class="flex flex-col gap-6 items-center mb-6">
   <h1>
     <SmallCaps>{title.split(' ')[0]}</SmallCaps>
     {title.split(' ').slice(1).join(' ')}
   </h1>
-  <div class="flex flex-col gap-6 items-center">
+  <div class="flex flex-col items-center">
     <Authors authors={authors} />
     {affiliations && <Affiliations affiliations={affiliations} />}
-    {conference && <p class="text-center">{conference}</p>}
+  </div>
+  <div class="flex flex-col items-center">
+    {conference && <p class="text-center"> {conference}</p>}
+    {presented_at && <p class="text-center"> {presented_at}</p>}
+  </div>
+  <div class="flex flex-col items-center">
     {notes && <Notes notes={notes} />}
     {links && <Links links={links} />}
   </div>
+
 </header>
